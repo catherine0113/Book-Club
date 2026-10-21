@@ -1,0 +1,4 @@
+'use client';
+import {useEffect,useState} from 'react';
+import Link from 'next/link';
+export default function Success(){const [token,setToken]=useState(null),[sent,setSent]=useState(true);useEffect(()=>{setToken(sessionStorage.getItem('registration-token'));setSent(sessionStorage.getItem('confirmation-email')!=='false');},[]);return <main className="narrow section"><span style={{fontSize:60}}>✧</span><h1>You’re in!</h1><p>Your seat at the book club has been reserved.</p><p>If you joined Secret Wish, we’ll secretly send you your match after registration closes.</p><p><strong>Don’t worry — nobody will know who has whom. 🤫</strong></p>{!sent&&<p className="notice">Your registration is saved, but the confirmation email could not be sent. Please save your registration link below.</p>}{token?<Link className="button" href={'/edit/'+token}>View My Registration ↗</Link>:<Link className="button" href="/register">Join the Book Club</Link>}</main>}
